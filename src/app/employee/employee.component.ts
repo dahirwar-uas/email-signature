@@ -12,10 +12,6 @@ const URL = 'http://localhost:4200/assets/images/';
 
 export class EmployeeComponent implements OnInit {
 
-  // @ViewChild('FileInput') myFileInputVariable: ElementRef;
-  // @ViewChild('contentToConvert') public contentToConvert: ElementRef;
-
-  @ViewChildren('ce') public ces:ElementRef;
   public uploader: FileUploader = new FileUploader({
     url: URL,
     queueLimit: 1,
@@ -79,24 +75,16 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
 
     this.uploader.onCompleteItem = (item: any, status: any) => {
-      console.log('Uploaded File Details:', item);
+      // console.log('Uploaded File Details:', item);
       alert('File successfully uploaded!');
     };
 
   }
 
-  ngAfterViewInit(): void {
-    if (this.ces) {
-      this.ces.nativeElement;
-    }
-  }
-
   create() {
     this.validityState();
     if(this.error) return;
-    console.log("Create");
     this.emailType = this.signature.team;
-
     this.downloadHTML();
   }
 
@@ -105,7 +93,7 @@ export class EmployeeComponent implements OnInit {
     // this.uploader.uploadItem(file);
     let formParams = new FormData();
     formParams.append('file', file)
-    console.log("File: ", file, formParams, this.uploader)
+    // console.log("File: ", file, formParams, this.uploader)
     // for (let i = 0; i < this.filesList.length; i++) {
     //   if (this.filesList[i].name === file.name) {
     //     this.toastr.warning('File already exists', 'Warning');
@@ -124,32 +112,24 @@ export class EmployeeComponent implements OnInit {
   }
 
   downloadHTML() {
-    const data : HTMLElement = this.elRef.nativeElement.getElementsByClassName('contentToConvert');
-
-    const fileData: any = data;
     const name = this.signature.employeeName.replace(/ /g,"_")+'.html';
-    // const data = this.elRef.nativeElement.querySelector('#contentToConvert')
-    console.log(this.ces, this.ces.nativeElement);
-    console.log("data: ", data, fileData, name);
-
+    setTimeout(() => {
+      const collection = document.getElementsByClassName('contentToConvert').item(0);
+      let content: any = collection?.innerHTML;
+      var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+      FileSaver.saveAs(blob, name);
+    }, 1000);
 
     
     // const fileName = 'personEmailSignature.html';
-    // const url = 'http://localhost:4200/assets/downloads/';
-    
-    
-    // FileSaver.saveAs(url, name);  
-
-    var blob = new Blob(fileData, {type: "text/plain;charset=utf-8"});
-    FileSaver.saveAs(blob, name);
-    
+    // const url = 'http://localhost:4200/assets/downloads/';    
+    // FileSaver.saveAs(url, name);     
     // window.open(url, '_blank');
   }
   validityState() {
     if(this.signature) {
       this.error = false;
       const keys = Object.keys(this.signature);
-      console.log("Empty: ", keys);
       keys.forEach( (e: any) => {
         if(this.signature[e] == "") {
           this.error = true;

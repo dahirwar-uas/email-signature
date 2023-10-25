@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-shared-email-signature',
@@ -10,8 +11,10 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 export class SharedEmailSignatureComponent implements OnInit {
 
   @Input() signature: any;
+  nativeElement: HTMLElement;
 
-  nativeElement: HTMLElement
+  apiRoute = `${environment.apiBaseURL}/`;
+
   constructor(element: ElementRef) {
     this.nativeElement = element.nativeElement;
   }

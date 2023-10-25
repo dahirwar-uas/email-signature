@@ -83,7 +83,7 @@
 
     <div class="mb-3">Preview Signature {{signature | json}}</div>
     <div class="mb-3" *ngIf="emailType != ''">
-        <app-shared-email-signature [signature]="signature" *ngIf="emailType != 'Business' && !error" class="contentToConvert" id="contentToConvert" #ce></app-shared-email-signature>
-        <app-person-email-signature [signature]="signature" *ngIf="emailType == 'Business' && !error"  class="contentToConvert" id="contentToConvert" #ce></app-person-email-signature>
+        <app-shared-email-signature [signature]="signature" *ngIf="emailType != 'Business' && !error" class="contentToConvert" id="contentToConvert"></app-shared-email-signature>
+        <app-person-email-signature [signature]="signature" *ngIf="emailType == 'Business' && !error"  class="contentToConvert" id="contentToConvert"></app-person-email-signature>
     </div>
 </fieldset>

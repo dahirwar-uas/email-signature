@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  mode: 'development',
+  apiBaseURL: 'https://qa-tmseapi.uas.aero/api',
 };

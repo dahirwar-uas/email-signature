@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-person-email-signature',
@@ -10,6 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PersonEmailSignatureComponent implements OnInit {
 
   @Input() signature: any;
+  apiRoute = `${environment.apiBaseURL}/`;
   constructor() { }
 
   ngOnInit(): void {

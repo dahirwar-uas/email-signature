@@ -1,814 +1,771 @@
-<!DOCTYPE html>
-<html>
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-<head>
-    <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    img {
+        border: 0;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+    }
 
-        img {
-            border: 0;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-        }
+    table {
+        border-collapse: collapse !important;
+    }
 
-        table {
-            border-collapse: collapse !important;
-        }
+    body,
+    #lego-body-table,
+    #lego-body-td {
+        height: 100% !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        margin: 0;
+        padding: 0;
+    }
 
-        body,
-        #lego-body-table,
-        #lego-body-td {
-            height: 100% !important;
+    body,
+    #lego-body-background-color {
+        background-color: #ffffff;
+    }
+
+    .section-wrapper {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .section-background {
+        width: 630px;
+        min-width: 630px;
+    }
+
+    .section-background.full-width {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .section-content {
+        width: 100%;
+        min-width: 630px;
+    }
+
+    .section-border {
+        table-layout: fixed;
+        width: 630px;
+        min-width: 630px;
+    }
+
+    .section-background.full-width .section-border {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .column .section-content {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .column-gutter {
+        width: 18px;
+        min-width: 18px;
+        line-height: 0px;
+        font-size: 0px;
+    }
+
+    .column.half {
+        width: 315px;
+        min-width: 315px;
+    }
+
+    .column.half.with-gutter {
+        width: 306px;
+        min-width: 306px;
+    }
+
+    .column.third {
+        width: 210px;
+        min-width: 210px;
+    }
+
+    .column.third.with-gutter {
+        width: 201px;
+        min-width: 201px;
+    }
+
+    .column.third.with-gutter.two-gutters {
+        width: 198px;
+        min-width: 198px;
+    }
+
+    .column.two-third {
+        width: 100%;
+        min-width: 600px;
+    }
+
+    .column.two-third.with-gutter {
+        width: 100%;
+        min-width: 600;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+
+    .desktop-only {
+        display: table;
+    }
+
+    @media only screen and (max-width:480px) {
+        .section-background {
+            max-width: 630px !important;
             width: 100% !important;
             min-width: 100% !important;
-            margin: 0;
-            padding: 0;
         }
 
-        body,
-        #lego-body-background-color {
-            background-color: #ffffff;
-        }
-
-        .section-wrapper {
-            width: 100%;
-            min-width: 100%;
-        }
-
-        .section-background {
-            width: 630px;
-            min-width: 630px;
-        }
-
-        .section-background.full-width {
-            width: 100%;
-            min-width: 100%;
-        }
-
-        .section-content {
-            width: 100%;
-            min-width: 630px;
-        }
-
+        .section-content,
         .section-border {
-            table-layout: fixed;
-            width: 630px;
-            min-width: 630px;
+            max-width: 630px !important;
+            width: 100% !important;
+            min-width: 100% !important;
         }
 
-        .section-background.full-width .section-border {
-            width: 100%;
-            min-width: 100%;
+        .column {
+            display: block !important;
         }
 
-        .column .section-content {
-            width: 100%;
-            min-width: 100%;
+        .column-flow-bottom {
+            display: table-footer-group !important;
+        }
+
+        .column-flow-top {
+            display: table-header-group !important;
+        }
+
+        .column.half,
+        .column.half.with-gutter,
+        .column.third,
+        .column.third.with-gutter,
+        .column.two-third,
+        .column.two-third.with-gutter {
+            width: 100% !important;
+            min-width: 100% !important;
         }
 
         .column-gutter {
-            width: 18px;
-            min-width: 18px;
-            line-height: 0px;
-            font-size: 0px;
+            display: none !important;
+            width: 0 !important;
+            min-width: 0 !important;
         }
 
-        .column.half {
-            width: 315px;
-            min-width: 315px;
-        }
-
-        .column.half.with-gutter {
-            width: 306px;
-            min-width: 306px;
-        }
-
-        .column.third {
-            width: 210px;
-            min-width: 210px;
-        }
-
-        .column.third.with-gutter {
-            width: 201px;
-            min-width: 201px;
-        }
-
-        .column.third.with-gutter.two-gutters {
-            width: 198px;
-            min-width: 198px;
-        }
-
-        .column.two-third {
-            width: 100%;
-            min-width: 600px;
-        }
-
-        .column.two-third.with-gutter {
-            width: 100%;
-            min-width: 600;
+        .column.column-flow-normal.with-gutter.not-last-column>table,
+        .column.column-flow-top>table {
+            margin-bottom: 18px !important;
         }
 
         .mobile-only {
-            display: none;
+            display: table !important;
         }
 
         .desktop-only {
-            display: table;
+            display: none !important;
         }
+    }
 
-        @media only screen and (max-width:480px) {
-            .section-background {
-                max-width: 630px !important;
-                width: 100% !important;
-                min-width: 100% !important;
-            }
+    .dm-image-block img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
 
-            .section-content,
-            .section-border {
-                max-width: 630px !important;
-                width: 100% !important;
-                min-width: 100% !important;
-            }
+    .dm-image-block {
+        table-layout: fixed;
+    }
 
-            .column {
-                display: block !important;
-            }
+    .dm-share-block-icon-label a {
+        text-decoration: none;
+    }
 
-            .column-flow-bottom {
-                display: table-footer-group !important;
-            }
+    blockquote {
+        font-family: Arial-ItalicMT, Arial, Helvetica, sans-serif;
+        font-size: 18.0px;
+        font-weight: normal;
+        font-style: italic;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+        margin-top: 18px;
+        margin-bottom: 18px;
+    }
 
-            .column-flow-top {
-                display: table-header-group !important;
-            }
+    h2 {
+        font-family: Arial-BoldMT, Arial, Helvetica, sans-serif;
+        font-size: 24.0px;
+        font-weight: bold;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
 
-            .column.half,
-            .column.half.with-gutter,
-            .column.third,
-            .column.third.with-gutter,
-            .column.two-third,
-            .column.two-third.with-gutter {
-                width: 100% !important;
-                min-width: 100% !important;
-            }
+    p {
+        font-family: ArialMT, Arial, Helvetica, sans-serif;
+        font-size: 16.0px;
+        font-weight: normal;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.6;
+        letter-spacing: normal;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
 
-            .column-gutter {
-                display: none !important;
-                width: 0 !important;
-                min-width: 0 !important;
-            }
+    td.dm-share-block-label {
+        font-family: ArialMT, Arial, Helvetica, sans-serif;
+        font-size: 12.0px;
+        font-weight: normal;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+    }
 
-            .column.column-flow-normal.with-gutter.not-last-column>table,
-            .column.column-flow-top>table {
-                margin-bottom: 18px !important;
-            }
+    p.dm-header-footer {
+        font-family: ArialMT, Arial, Helvetica, sans-serif;
+        font-size: 12.0px;
+        font-weight: normal;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 
-            .mobile-only {
-                display: table !important;
-            }
+    h3 {
+        font-family: Arial-BoldMT, Arial, Helvetica, sans-serif;
+        font-size: 20.0px;
+        font-weight: bold;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
 
-            .desktop-only {
-                display: none !important;
-            }
-        }
+    li {
+        font-family: ArialMT, Arial, Helvetica, sans-serif;
+        font-size: 16.0px;
+        font-weight: normal;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.6;
+        letter-spacing: normal;
+    }
 
-        .dm-image-block img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+    h1 {
+        font-family: Arial-BoldMT, Arial, Helvetica, sans-serif;
+        font-size: 29.0px;
+        font-weight: bold;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+        margin-top: 21px;
+        margin-bottom: 21px;
+    }
 
-        .dm-image-block {
-            table-layout: fixed;
-        }
+    p.dm-caption {
+        font-family: Arial-BoldItalicMT, Arial, Helvetica, sans-serif;
+        font-size: 12.0px;
+        font-weight: bold;
+        font-style: italic;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+        margin-top: 9px;
+        margin-bottom: 9px;
+    }
 
-        .dm-share-block-icon-label a {
-            text-decoration: none;
-        }
+    td.dm-follow-block-label {
+        font-family: ArialMT, Arial, Helvetica, sans-serif;
+        font-size: 12.0px;
+        font-weight: normal;
+        font-style: normal;
+        color: #434244;
+        line-height: 1.4;
+        letter-spacing: normal;
+    }
 
-        blockquote {
-            font-family: Arial-ItalicMT, Arial, Helvetica, sans-serif;
-            font-size: 18.0px;
-            font-weight: normal;
-            font-style: italic;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-            margin-top: 18px;
-            margin-bottom: 18px;
-        }
+    blockquote {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
 
-        h2 {
-            font-family: Arial-BoldMT, Arial, Helvetica, sans-serif;
-            font-size: 24.0px;
-            font-weight: bold;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-            margin-top: 16px;
-            margin-bottom: 16px;
-        }
+    .dm-text-block.no-paragraph-spacing h1,
+    .dm-text-block.no-paragraph-spacing h2,
+    .dm-text-block.no-paragraph-spacing h3,
+    .dm-text-block.no-paragraph-spacing p,
+    .dm-text-block.no-paragraph-spacing blockquote {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
 
-        p {
-            font-family: ArialMT, Arial, Helvetica, sans-serif;
-            font-size: 16.0px;
-            font-weight: normal;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.6;
-            letter-spacing: normal;
-            margin-top: 16px;
-            margin-bottom: 16px;
-        }
-
-        td.dm-share-block-label {
-            font-family: ArialMT, Arial, Helvetica, sans-serif;
-            font-size: 12.0px;
-            font-weight: normal;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-        }
-
-        p.dm-header-footer {
-            font-family: ArialMT, Arial, Helvetica, sans-serif;
-            font-size: 12.0px;
-            font-weight: normal;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        h3 {
-            font-family: Arial-BoldMT, Arial, Helvetica, sans-serif;
-            font-size: 20.0px;
-            font-weight: bold;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-
-        li {
-            font-family: ArialMT, Arial, Helvetica, sans-serif;
-            font-size: 16.0px;
-            font-weight: normal;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.6;
-            letter-spacing: normal;
-        }
-
-        h1 {
-            font-family: Arial-BoldMT, Arial, Helvetica, sans-serif;
-            font-size: 29.0px;
-            font-weight: bold;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-            margin-top: 21px;
-            margin-bottom: 21px;
-        }
-
-        p.dm-caption {
-            font-family: Arial-BoldItalicMT, Arial, Helvetica, sans-serif;
-            font-size: 12.0px;
-            font-weight: bold;
-            font-style: italic;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-            margin-top: 9px;
-            margin-bottom: 9px;
-        }
-
-        td.dm-follow-block-label {
-            font-family: ArialMT, Arial, Helvetica, sans-serif;
-            font-size: 12.0px;
-            font-weight: normal;
-            font-style: normal;
-            color: #434244;
-            line-height: 1.4;
-            letter-spacing: normal;
-        }
-
-        blockquote {
-            margin-left: 18px;
-            margin-right: 18px;
-        }
-
-        .dm-text-block.no-paragraph-spacing h1,
-        .dm-text-block.no-paragraph-spacing h2,
-        .dm-text-block.no-paragraph-spacing h3,
-        .dm-text-block.no-paragraph-spacing p,
-        .dm-text-block.no-paragraph-spacing blockquote {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-
-        a {
-            color: #0089cd;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="lego-body-background-color">
-        <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="lego-body-table">
-            <tbody>
-                <tr>
-                    <td valign="top" id="lego-body-td">
-                        <table border="0" cellpadding="0" cellspacing="0" class="section-wrapper">
-                            <tbody>
-                                <tr>
-                                    <td valign="top">
-                                        <table border="0" cellpadding="0" cellspacing="0"
-                                            class="section-background full-width">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="top">
-                                                        <table border="0" cellpadding="0" cellspacing="0"
-                                                            class="section-content">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td valign="top">
-                                                                        <table border="0" cellpadding="0"
-                                                                            cellspacing="0" width="100%"
-                                                                            class="column-background">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td align="center" valign="top"
-                                                                                        class="column third column-flow-normal"
-                                                                                        style="width:201px;">
-                                                                                        <table border="0"
-                                                                                            cellpadding="0"
-                                                                                            cellspacing="0"
-                                                                                            width="100%">
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        valign="top">
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-image-block">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="center">
-                                                                                                                        <table
-                                                                                                                            border="0"
-                                                                                                                            cellpadding="0"
-                                                                                                                            cellspacing="0"
-                                                                                                                            width="100%">
-                                                                                                                            <tbody>
-                                                                                                                                <tr>
-                                                                                                                                    <td height="20"
-                                                                                                                                        style="height:20px;line-height:20px;font-size:20px">
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </tbody>
-                                                                                                                        </table>
+    a {
+        color: #0089cd;
+    }
+</style>
+<div id="lego-body-background-color">
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="lego-body-table">
+        <tbody>
+            <tr>
+                <td valign="top" id="lego-body-td">
+                    <table border="0" cellpadding="0" cellspacing="0" class="section-wrapper">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <table border="0" cellpadding="0" cellspacing="0"
+                                        class="section-background full-width">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top">
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        class="section-content">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="top">
+                                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                                        width="100%" class="column-background">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" valign="top"
+                                                                                    class="column third column-flow-normal"
+                                                                                    style="width:201px;">
+                                                                                    <table border="0" cellpadding="0"
+                                                                                        cellspacing="0" width="100%">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center"
+                                                                                                    valign="top">
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-image-block">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="center">
+                                                                                                                    <table
+                                                                                                                        border="0"
+                                                                                                                        cellpadding="0"
+                                                                                                                        cellspacing="0"
+                                                                                                                        width="100%">
+                                                                                                                        <tbody>
+                                                                                                                            <tr>
+                                                                                                                                <td height="20"
+                                                                                                                                    style="height:20px;line-height:20px;font-size:20px">
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                    <!--[if !mso]><!-- -->
+                                                                                                                    <img src="{{apiRoute}}assets/images/JonSmithS.jpg"
+                                                                                                                        border="0"
+                                                                                                                        width="334"
+                                                                                                                        height="334"
+                                                                                                                        alt="Jon Smith"
+                                                                                                                        data-dm-src-width-hint="334"
+                                                                                                                        style="border-radius:315px" />
+                                                                                                                    <!--<![endif]-->
+                                                                                                                    <!--[if mso]><img  src="images/JonSmithS.jpg" border="0" alt="Jon Smith" data-dm-src-width-hint="334" style="border-radius:315px" width="170" height="170"/><![endif]-->
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td height="20"
+                                                                                                                    style="height:20px;line-height:20px;font-size:20px"
+                                                                                                                    colspan="3">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-image-block">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="center"
+                                                                                                                    style="padding-top:20px;text-align: center;">
+                                                                                                                    <a
+                                                                                                                        href="www.uas.aero">
                                                                                                                         <!--[if !mso]><!-- -->
-                                                                                                                        <img src="./../../assets/images/JonSmithS.jpg"
+                                                                                                                        <img src="{{apiRoute}}assets/images/uasLogo.png"
                                                                                                                             border="0"
-                                                                                                                            width="334"
-                                                                                                                            height="334"
-                                                                                                                            alt="Jon Smith"
-                                                                                                                            data-dm-src-width-hint="334"
-                                                                                                                            style="border-radius:315px" />
+                                                                                                                            width="338"
+                                                                                                                            height="133"
+                                                                                                                            alt="UAS International Trip Support"
+                                                                                                                            data-dm-src-width-hint="338" />
                                                                                                                         <!--<![endif]-->
-                                                                                                                        <!--[if mso]><img  src="images/JonSmithS.jpg" border="0" alt="Jon Smith" data-dm-src-width-hint="334" style="border-radius:315px" width="170" height="170"/><![endif]-->
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td height="20"
-                                                                                                                        style="height:20px;line-height:20px;font-size:20px"
-                                                                                                                        colspan="3">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-image-block">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="center"
-                                                                                                                        style="padding-top:20px;text-align: center;">
-                                                                                                                        <a href="www.uas.aero"
-                                                                                                                            style="background-color: red !important;">
-                                                                                                                            <!--[if !mso]><!-- -->
-                                                                                                                            <img src="./../../assets/images/uasLogo.png"
+                                                                                                                        <!--[if mso]><img  src="images/uasLogo.png" border="0" alt="UAS International Trip Support" data-dm-src-width-hint="338" width="170" height="67" /><![endif]-->
+                                                                                                                    </a>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td height="20"
+                                                                                                                    style="height:20px;line-height:20px;font-size:20px"
+                                                                                                                    colspan="3">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="1"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="16"
+                                                                                                                    style="width:16px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="middle"
+                                                                                                                    align="center">
+                                                                                                                    <table
+                                                                                                                        border="0"
+                                                                                                                        cellpadding="0"
+                                                                                                                        cellspacing="0"
+                                                                                                                        style="min-width:100%;">
+                                                                                                                        <tbody>
+                                                                                                                            <tr>
+                                                                                                                                <td align="center"
+                                                                                                                                    bgcolor="#5a2f80"
+                                                                                                                                    style="border-radius:200px;">
+                                                                                                                                    <a href="https://www.uas.aero/"
+                                                                                                                                        style="font-family:Arial-BoldMT,Arial,Helvetica,sans-serif;font-size:20.0px;font-weight:bold;font-style:normal;color:#ffffff;line-height:1.0;letter-spacing:normal;text-decoration:none;border-radius:200px;border:2px solid #5a2f80;padding:5px 30px;display:block;">uas.aero</a>
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                </td>
+                                                                                                                <td width="16"
+                                                                                                                    style="width:16px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td height="20"
+                                                                                                                    style="height:20px;line-height:20px;font-size:20px"
+                                                                                                                    colspan="3">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                                <td align="center" valign="top"
+                                                                                    class="column two-third column-flow-normal">
+                                                                                    <table border="0" cellpadding="0"
+                                                                                        cellspacing="0" width="100%">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center"
+                                                                                                    valign="top">
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="middle"
+                                                                                                                    align="center"
+                                                                                                                    height="40"
+                                                                                                                    style="height:40px;line-height:40px;font-size:40px">
+                                                                                                                    <table
+                                                                                                                        border="0"
+                                                                                                                        cellpadding="0"
+                                                                                                                        cellspacing="0"
+                                                                                                                        width="100%"
+                                                                                                                        bgcolor="#55148e"
+                                                                                                                        style="background-color:#55148e;min-width:100%">
+                                                                                                                        <tbody>
+                                                                                                                            <tr>
+                                                                                                                                <td height="1"
+                                                                                                                                    style="height:1px;line-height:1px;font-size:1px">
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-text-block no-paragraph-spacing">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="left">
+                                                                                                                    <h3>{{signature.employeeName}}<br />
+                                                                                                                    </h3>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-text-block no-paragraph-spacing">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="left">
+                                                                                                                    <p>{{signature.employeeDesignation}}<br />
+                                                                                                                    </p>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="middle"
+                                                                                                                    align="center"
+                                                                                                                    height="20"
+                                                                                                                    style="height:20px;line-height:20px;font-size:20px">
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-text-block no-paragraph-spacing">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="left">
+                                                                                                                    <p>{{signature.addressLine1}},
+                                                                                                                    </p>
+                                                                                                                    <p>{{signature.addressLine2}},
+                                                                                                                    </p>
+                                                                                                                    <p>{{signature.addressLine3}}
+                                                                                                                    </p>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="middle"
+                                                                                                                    align="center"
+                                                                                                                    height="20"
+                                                                                                                    style="height:20px;line-height:20px;font-size:20px">
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-text-block no-paragraph-spacing">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="left">
+                                                                                                                    <p>T.
+                                                                                                                        +{{signature.phone}}
+                                                                                                                        &bull;
+                                                                                                                        Ext:
+                                                                                                                        {{signature.extLine}}
+                                                                                                                    </p>
+                                                                                                                    <p>F.
+                                                                                                                        +{{signature.faxLine}}
+                                                                                                                    </p>
+                                                                                                                    <p>M.
+                                                                                                                        +{{signature.mobile}}
+                                                                                                                    </p>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="middle"
+                                                                                                                    align="center"
+                                                                                                                    height="20"
+                                                                                                                    style="height:20px;line-height:20px;font-size:20px">
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    <table border="0"
+                                                                                                        cellpadding="0"
+                                                                                                        cellspacing="0"
+                                                                                                        width="100%"
+                                                                                                        class="dm-text-block no-paragraph-spacing">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                                <td valign="top"
+                                                                                                                    align="left">
+                                                                                                                    <p>
+                                                                                                                        <a
+                                                                                                                            href="http://www.facebook.com/UAS.aero"><img
+                                                                                                                                style="margin-right:10px;"
+                                                                                                                                class="dm-user-inserted-image"
+                                                                                                                                src="{{apiRoute}}assets/images/facebook.png"
                                                                                                                                 border="0"
-                                                                                                                                width="338"
-                                                                                                                                height="133"
-                                                                                                                                alt="UAS International Trip Support"
-                                                                                                                                data-dm-src-width-hint="338" />
-                                                                                                                            <!--<![endif]-->
-                                                                                                                            <!--[if mso]><img  src="images/uasLogo.png" border="0" alt="UAS International Trip Support" data-dm-src-width-hint="338" width="170" height="67" /><![endif]-->
-                                                                                                                        </a>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td height="20"
-                                                                                                                        style="height:20px;line-height:20px;font-size:20px"
-                                                                                                                        colspan="3">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="1"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="16"
-                                                                                                                        style="width:16px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="middle"
-                                                                                                                        align="center">
-                                                                                                                        <table
-                                                                                                                            border="0"
-                                                                                                                            cellpadding="0"
-                                                                                                                            cellspacing="0"
-                                                                                                                            style="min-width:100%;">
-                                                                                                                            <tbody>
-                                                                                                                                <tr>
-                                                                                                                                    <td align="center"
-                                                                                                                                        bgcolor="#5a2f80"
-                                                                                                                                        style="border-radius:200px;">
-                                                                                                                                        <a href="https://www.uas.aero/"
-                                                                                                                                            style="font-family:Arial-BoldMT,Arial,Helvetica,sans-serif;font-size:20.0px;font-weight:bold;font-style:normal;color:#ffffff;line-height:1.0;letter-spacing:normal;text-decoration:none;border-radius:200px;border:2px solid #5a2f80;padding:5px 30px;display:block;">uas.aero</a>
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </tbody>
-                                                                                                                        </table>
-                                                                                                                    </td>
-                                                                                                                    <td width="16"
-                                                                                                                        style="width:16px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td height="20"
-                                                                                                                        style="height:20px;line-height:20px;font-size:20px"
-                                                                                                                        colspan="3">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </td>
-                                                                                    <td align="center" valign="top"
-                                                                                        class="column two-third column-flow-normal">
-                                                                                        <table border="0"
-                                                                                            cellpadding="0"
-                                                                                            cellspacing="0"
-                                                                                            width="100%">
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        valign="top">
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="middle"
-                                                                                                                        align="center"
-                                                                                                                        height="40"
-                                                                                                                        style="height:40px;line-height:40px;font-size:40px">
-                                                                                                                        <table
-                                                                                                                            border="0"
-                                                                                                                            cellpadding="0"
-                                                                                                                            cellspacing="0"
-                                                                                                                            width="100%"
-                                                                                                                            bgcolor="#55148e"
-                                                                                                                            style="background-color:#55148e;min-width:100%">
-                                                                                                                            <tbody>
-                                                                                                                                <tr>
-                                                                                                                                    <td height="1"
-                                                                                                                                        style="height:1px;line-height:1px;font-size:1px">
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </tbody>
-                                                                                                                        </table>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-text-block no-paragraph-spacing">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="left">
-                                                                                                                        <h3>Jon
-                                                                                                                            Smith<br />
-                                                                                                                        </h3>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-text-block no-paragraph-spacing">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="left">
-                                                                                                                        <p>Airport
-                                                                                                                            Supervisor<br />
-                                                                                                                        </p>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="middle"
-                                                                                                                        align="center"
-                                                                                                                        height="20"
-                                                                                                                        style="height:20px;line-height:20px;font-size:20px">
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-text-block no-paragraph-spacing">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="left">
-                                                                                                                        <p>UAS
-                                                                                                                            Building,
-                                                                                                                            DAFZA,
-                                                                                                                        </p>
-                                                                                                                        <p>P.O
-                                                                                                                            Box
-                                                                                                                            54482,
-                                                                                                                        </p>
-                                                                                                                        <p>Dubai,
-                                                                                                                            UAE
-                                                                                                                        </p>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="middle"
-                                                                                                                        align="center"
-                                                                                                                        height="20"
-                                                                                                                        style="height:20px;line-height:20px;font-size:20px">
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-text-block no-paragraph-spacing">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="left">
-                                                                                                                        <p>T.
-                                                                                                                            +971
-                                                                                                                            4
-                                                                                                                            299
-                                                                                                                            6633
-                                                                                                                            &bull;
-                                                                                                                            Ext:
-                                                                                                                            1622
-                                                                                                                        </p>
-                                                                                                                        <p>F.
-                                                                                                                            +971
-                                                                                                                            4
-                                                                                                                            299
-                                                                                                                            6777
-                                                                                                                        </p>
-                                                                                                                        <p>M.
-                                                                                                                            +971
-                                                                                                                            56
-                                                                                                                            415
-                                                                                                                            4365
-                                                                                                                        </p>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="middle"
-                                                                                                                        align="center"
-                                                                                                                        height="20"
-                                                                                                                        style="height:20px;line-height:20px;font-size:20px">
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            width="100%"
-                                                                                                            class="dm-text-block no-paragraph-spacing">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                    <td valign="top"
-                                                                                                                        align="left">
-                                                                                                                        <p>
-                                                                                                                            <a
-                                                                                                                                href="http://www.facebook.com/UAS.aero"><img
-                                                                                                                                    style="margin-right:10px;"
-                                                                                                                                    class="dm-user-inserted-image"
-                                                                                                                                    src="./../../assets/images/facebook.png"
-                                                                                                                                    border="0"
-                                                                                                                                    width="48"
-                                                                                                                                    height="48" /></a>
-                                                                                                                            <a
-                                                                                                                                href="http://twitter.com/uas_aero"><img
-                                                                                                                                    style="margin-right:10px;"
-                                                                                                                                    class="dm-user-inserted-image"
-                                                                                                                                    src="./../../assets/images/twitter.png"
-                                                                                                                                    border="0"
-                                                                                                                                    width="48"
-                                                                                                                                    height="48" /></a>
-                                                                                                                            <a
-                                                                                                                                href="https://www.instagram.com/uas_aero/"><img
-                                                                                                                                    style="margin-right:10px;"
-                                                                                                                                    class="dm-user-inserted-image"
-                                                                                                                                    src="./../../assets/images/instagram.png"
-                                                                                                                                    border="0"
-                                                                                                                                    width="48"
-                                                                                                                                    height="48" /></a>
-                                                                                                                            <a
-                                                                                                                                href="https://www.linkedin.com/company/uasaero/"><img
-                                                                                                                                    style="margin-right:10px;"
-                                                                                                                                    class="dm-user-inserted-image"
-                                                                                                                                    src="./../../assets/images/linkedin.png"
-                                                                                                                                    border="0"
-                                                                                                                                    width="48"
-                                                                                                                                    height="48" /></a>
-                                                                                                                            <a
-                                                                                                                                href="http://www.youtube.com/channel/UCsF7071q6wbpAXKPAiXNdGg"><img
-                                                                                                                                    style="margin-right:10px;"
-                                                                                                                                    class="dm-user-inserted-image"
-                                                                                                                                    src="./../../assets/images/youtube.png"
-                                                                                                                                    border="0"
-                                                                                                                                    width="48"
-                                                                                                                                    height="48" /></a>
-                                                                                                                            <br />
-                                                                                                                        </p>
-                                                                                                                    </td>
-                                                                                                                    <td width="20"
-                                                                                                                        style="width:20px;line-height:0px;font-size:0px">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</body>
-
-</html>
+                                                                                                                                width="48"
+                                                                                                                                height="48" /></a>
+                                                                                                                        <a
+                                                                                                                            href="http://twitter.com/uas_aero"><img
+                                                                                                                                style="margin-right:10px;"
+                                                                                                                                class="dm-user-inserted-image"
+                                                                                                                                src="{{apiRoute}}assets/images/twitter.png"
+                                                                                                                                border="0"
+                                                                                                                                width="48"
+                                                                                                                                height="48" /></a>
+                                                                                                                        <a
+                                                                                                                            href="https://www.instagram.com/uas_aero/"><img
+                                                                                                                                style="margin-right:10px;"
+                                                                                                                                class="dm-user-inserted-image"
+                                                                                                                                src="{{apiRoute}}assets/images/instagram.png"
+                                                                                                                                border="0"
+                                                                                                                                width="48"
+                                                                                                                                height="48" /></a>
+                                                                                                                        <a
+                                                                                                                            href="https://www.linkedin.com/company/uasaero/"><img
+                                                                                                                                style="margin-right:10px;"
+                                                                                                                                class="dm-user-inserted-image"
+                                                                                                                                src="{{apiRoute}}assets/images/linkedin.png"
+                                                                                                                                border="0"
+                                                                                                                                width="48"
+                                                                                                                                height="48" /></a>
+                                                                                                                        <a
+                                                                                                                            href="http://www.youtube.com/channel/UCsF7071q6wbpAXKPAiXNdGg"><img
+                                                                                                                                style="margin-right:10px;"
+                                                                                                                                class="dm-user-inserted-image"
+                                                                                                                                src="{{apiRoute}}assets/images/youtube.png"
+                                                                                                                                border="0"
+                                                                                                                                width="48"
+                                                                                                                                height="48" /></a>
+                                                                                                                        <br />
+                                                                                                                    </p>
+                                                                                                                </td>
+                                                                                                                <td width="20"
+                                                                                                                    style="width:20px;line-height:0px;font-size:0px">
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
