@@ -1,0 +1,89 @@
+<fieldset class="boxBody">
+    <legend class="mb-3">Signature Form</legend>
+    <p class="error" *ngIf="error">Please fill all the form fields.</p>
+    <form #docsForm="ngForm" (keydown.enter)="$event.preventDefault()">
+        <div class="form-floating mb-3">
+            <select class="form-select" id="regionSelect" name="regionSelect" aria-label="Select region" [(ngModel)]="signature.region" required>
+                <option selected>Select region</option>
+                <option value="{{r}}" *ngFor="let r of regions">{{r}}</option>
+            </select>
+            <label for="floatingSelect">Region</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-select" id="teamSelect" name="teamSelect" aria-label="Select Team" [(ngModel)]="signature.team" required (change)="changeView()">
+                <option selected>Select Team</option>
+                <option value="{{t}}" *ngFor="let t of teams">{{t}}</option>
+            </select>
+            <label for="floatingSelect">Team</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="employeeName" name="employeeName" placeholder="Enter Employee Name" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.employeeName" required>
+            <label for="floatingInput">Employee Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="employeeDesignation" name="employeeDesignation" placeholder="Enter Employee Designation" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.employeeDesignation" required>
+            <label for="floatingInput">Employee Designation</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Enter Address Line" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.addressLine1" required>
+            <label for="floatingInput">Address Line</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="addressLine2" name="addressLine2" placeholder="Enter Address Line" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.addressLine2" required>
+            <label for="floatingInput">Address Line</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="addressLine3" name="addressLine3" placeholder="Enter Address Line" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.addressLine3" required>
+            <label for="floatingInput">Address Line</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone" pattern="[0-9\s]+" #autofocus [(ngModel)]="signature.phone" required>
+            <label for="floatingInput">Phone</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="extLine" name="extLine" placeholder="Enter Ext. Line" pattern="[0-9\s]+" #autofocus [(ngModel)]="signature.extLine" required>
+            <label for="floatingInput">Ext. Line</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="faxLine" name="faxLine" placeholder="Enter Fax Line" pattern="[0-9\s]+" #autofocus [(ngModel)]="signature.faxLine" required>
+            <label for="floatingInput">Fax Line</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile or Arinc Code Line" pattern="[0-9\s]+" #autofocus [(ngModel)]="signature.mobile" required>
+            <label for="floatingInput">Mobile or Arinc Code Line</label>
+        </div>
+        <div class="form-floating mb-3" *ngIf="signature.team == 'Business'">
+            <!-- <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Upload Profile Picture" pattern="[0-9\s]+" #autofocus [(ngModel)]="signature.picture" required> -->
+            <input type="file" class="form-control" id="attachment" name="attachment" accept="image/x-png,image/gif,image/jpeg" ng2FileSelect (uploader)="uploader" #FileInput (onFileSelected)="onFileSelected($event)"
+            (change)="onFileChange($event)" [(ngModel)]="signature.picture">
+            <label for="floatingInput">Profile Picture</label>
+
+
+            <!-- <div class="file-drop no-padding">
+                <div class="dz-message needsclick" id="country" ng2FileDrop (fileOver)="fileOverBase($event)"
+                  [uploader]="uploader" (onFileDrop)="onFileSelected($event)">
+                  <div class="mt-3 dz-message_">
+                    <i class="icon icon-upload"></i>
+                    <label class="note"> Drag and Drop to Upload </label>
+                    <label for="filesList" class="note needsclick">or <strong> Browse</strong> to choose a file</label>
+                    <input id="filesList" style="visibility:hidden; width: 100px;" type="file" ng2FileSelect
+                      [uploader]="uploader" #FileInput (onFileSelected)="onFileSelected($event)"
+                      (change)="onFileChange($event)">
+                  </div>
+                </div>
+              </div> -->
+        </div>
+    </form>
+
+    <div class="editor-field mb-3">
+        <button class="card card-small btn btn-primary" (click)="create();" tabindex="0">
+            Create
+        </button>
+    </div>
+
+    <div class="mb-3">Preview Signature {{signature | json}}</div>
+    <div class="mb-3" *ngIf="emailType != ''">
+        <app-shared-email-signature [signature]="signature" *ngIf="emailType != 'Business' && !error" class="contentToConvert" id="contentToConvert" #ce></app-shared-email-signature>
+        <app-person-email-signature [signature]="signature" *ngIf="emailType == 'Business' && !error"  class="contentToConvert" id="contentToConvert" #ce></app-person-email-signature>
+    </div>
+</fieldset>
