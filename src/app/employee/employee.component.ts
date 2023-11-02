@@ -25,7 +25,7 @@ export class EmployeeComponent implements OnInit {
   };
 
   regions = ['Middle East Headquarters', 'India'];
-  teams = ['Business','Other'];
+  teams = ['Business','Department'];
   emailType: string = '';
   error = false;
 

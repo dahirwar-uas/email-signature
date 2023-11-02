@@ -53,10 +53,10 @@
             <label for="floatingInput">Mobile or Arinc Code Line</label>
         </div>
         <div class="form-floating mb-3" *ngIf="signature.team == 'Business'">
-            <!-- <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Upload Profile Picture" pattern="[0-9\s]+" #autofocus [(ngModel)]="signature.picture" required> -->
-            <input type="file" class="form-control" id="attachment" name="attachment" accept="image/x-png,image/gif,image/jpeg" ng2FileSelect (uploader)="uploader" #FileInput (onFileSelected)="onFileSelected($event)"
-            (change)="onFileChange($event)" [(ngModel)]="signature.picture">
-            <label for="floatingInput">Profile Picture</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Profile Picture URL" #autofocus [(ngModel)]="signature.picture" required>
+            <!-- <input type="file" class="form-control" id="attachment" name="attachment" accept="image/x-png,image/gif,image/jpeg" ng2FileSelect (uploader)="uploader" #FileInput (onFileSelected)="onFileSelected($event)"
+            (change)="onFileChange($event)" [(ngModel)]="signature.picture"> -->
+            <label for="floatingInput">Profile Picture URL</label>
 
 
             <!-- <div class="file-drop no-padding">
@@ -81,7 +81,7 @@
         </button>
     </div>
 
-    <div class="mb-3">Preview Signature {{signature | json}}</div>
+    <div class="mb-3">Preview Signature</div>
     <div class="mb-3" *ngIf="emailType != ''">
         <app-shared-email-signature [signature]="signature" *ngIf="emailType != 'Business' && !error" class="contentToConvert" id="contentToConvert"></app-shared-email-signature>
         <app-person-email-signature [signature]="signature" *ngIf="emailType == 'Business' && !error"  class="contentToConvert" id="contentToConvert"></app-person-email-signature>
