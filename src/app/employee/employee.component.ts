@@ -116,7 +116,7 @@ export class EmployeeComponent implements OnInit {
     setTimeout(() => {
       const collection = document.getElementsByClassName('contentToConvert').item(0);
       let content: any = collection?.innerHTML;
-      var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+      var blob = new Blob([content], {type: "text/html;charset=utf-8"});
       FileSaver.saveAs(blob, name);
     }, 1000);
 
