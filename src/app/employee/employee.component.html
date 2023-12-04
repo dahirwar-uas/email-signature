@@ -16,11 +16,16 @@
             </select>
             <label for="floatingSelect">Team</label>
         </div>
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3" *ngIf="signature.team == 'Department'">
+            <input type="text" class="form-control" id="teamName" name="teamName" placeholder="Enter Team Name"
+                pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.teamName" required>
+            <label for="floatingInput">Team Name</label>
+        </div>
+        <div class="form-floating mb-3" *ngIf="signature.team == 'Business'">
             <input type="text" class="form-control" id="employeeName" name="employeeName" placeholder="Enter Employee Name" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.employeeName" required>
             <label for="floatingInput">Employee Name</label>
         </div>
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3" *ngIf="signature.team == 'Business'">
             <input type="text" class="form-control" id="employeeDesignation" name="employeeDesignation" placeholder="Enter Employee Designation" pattern="[a-zA-Z0-9\s]+" #autofocus [(ngModel)]="signature.employeeDesignation" required>
             <label for="floatingInput">Employee Designation</label>
         </div>
