@@ -128,15 +128,15 @@ export class EmployeeComponent implements OnInit {
   }
   validityState() {
     if(this.signature) {
-      if (this.signature.team == 'Department') {
-        this.signature.employeeName = 'Dummy Name'; 
-        this.signature.employeeDesignation = 'Dummy Designation';
-        this.signature.picture = "Dummy URL";
-      }
-      if (this.signature.team == 'Business') {
-        this.signature.employeeName = 'Dummy Name';
-        this.signature.employeeDesignation = 'Dummy Designation';
-      }
+      // if (this.signature.team == 'Department') {
+      //   this.signature.employeeName = 'Dummy Name'; 
+      //   this.signature.employeeDesignation = 'Dummy Designation';
+      //   this.signature.picture = "Dummy URL";
+      // }
+      // if (this.signature.team == 'Business') {
+      //   this.signature.employeeName = 'Dummy Name';
+      //   this.signature.employeeDesignation = 'Dummy Designation';
+      // }
       this.error = false;
       const keys = Object.keys(this.signature);
       keys.forEach( (e: any) => {
