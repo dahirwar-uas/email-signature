@@ -21,7 +21,7 @@ export class EmployeeComponent implements OnInit {
   // response:string;
   
   signature: any = {
-    "region": '', "team": '', "teamName": '', "employeeName": '', "employeeDesignation": '', "addressLine1": '', "addressLine2": '', "addressLine3": '', "phone": '', "faxLine": '', "mobile": '', "extLine": ''
+    "region": '', "team": '', "employeeName": '', "employeeDesignation": '', "addressLine1": '', "addressLine2": '', "addressLine3": '', "phone": '', "faxLine": '', "mobile": '', "extLine": ''
   };
 
   regions = ['Middle East Headquarters', 'India'];
@@ -129,16 +129,17 @@ export class EmployeeComponent implements OnInit {
   validityState() {
     if(this.signature) {
       if (this.signature.team == 'Department') {
-        this.signature.employeeName = 'Dummy'; 
-        this.signature.employeeDesignation = 'Dummy';
+        this.signature.employeeName = 'Dummy Name'; 
+        this.signature.employeeDesignation = 'Dummy Designation';
+        this.signature.picture = "Dummy URL";
       }
       if (this.signature.team == 'Business') {
-        this.signature.teamName = 'Dummy';
+        this.signature.employeeName = 'Dummy Name';
+        this.signature.employeeDesignation = 'Dummy Designation';
       }
       this.error = false;
       const keys = Object.keys(this.signature);
       keys.forEach( (e: any) => {
-        console.log("this.signature[e]: ", this.signature[e])
         if(this.signature[e] == "") {
           this.error = true;
         }
