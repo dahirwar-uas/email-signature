@@ -21,7 +21,7 @@ export class EmployeeComponent implements OnInit {
   // response:string;
   
   signature: any = {
-    "region": '', "team": '', "employeeName": '', "employeeDesignation": '', "addressLine1": '', "addressLine2": '', "addressLine3": '', "phone": '', "faxLine": '', "mobile": '', "extLine": ''
+    "team": '', "employeeName": '', "employeeDesignation": '', "addressLine1": '', "addressLine2": '', "phone": '', "faxLine": '', "mobile": '', "extLine": ''
   };
 
   regions = ['Middle East Headquarters', 'India'];
@@ -140,8 +140,10 @@ export class EmployeeComponent implements OnInit {
       this.error = false;
       const keys = Object.keys(this.signature);
       keys.forEach( (e: any) => {
-        if(this.signature[e] == "") {
-          this.error = true;
+        if (e == 'team' || e == 'employeeName' || e == 'employeeDesignation' || e == 'addressLine1') {
+          if(this.signature[e] == "") {
+            this.error = true;
+          }
         }
       });
     }
