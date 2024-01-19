@@ -3,145 +3,60 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        body,
+        table,
+        td,
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
-    <table style="width:100%;font-family: Arial, Helvetica, sans-serif;color:#1D2536;font-size: 12px;margin-top:20px;">
+    <table
+        style="width: 100%; max-width: 600px; font-family: Arial, Helvetica, sans-serif; color: #1D2536; font-size: 12px; line-height: 1.4;">
         <tbody>
             <tr>
-                <td style="width:140px;vertical-align:top;">
-                    <table>
+                <td style="width: 120px; vertical-align: top; padding-right: 20px;">
+                    <img src="{{signature.picture}}" width="120" style="border-radius: 100%;min-height: 120px;" />
+                    <img src="https://uaspublicmedia.blob.core.windows.net/public-media/uas-signature-logo.jpg"
+                        width="120" style="margin-top: 10px;" />
+                </td>
+                <td style="vertical-align: top; border-left: 2px solid #55148e; padding-left: 20px;">
+                    <h2 style="margin: 0; font-size: 16px;">{{signature.employeeName}}</h2>
+                    <h4 style="margin: 5px 0; font-size: 14px;">{{signature.employeeDesignation}}</h4>
+                    <p style="margin: 5px 0;">{{signature.addressLine1}},<br />{{signature.addressLine2}}</p>
+                    <p style="margin: 5px 0;">
+                        T: <a href="tel:+97142996633"
+                            style="color: #434244; text-decoration: none;">+{{signature.phone}}</a>
+                        Ext: {{signature.extLine}}<br />
+                        F: <a href="tel:+97145103400"
+                            style="color: #434244; text-decoration: none;">+{{signature.faxLine}}</a><br />
+                        M: <a href="tel:+97145103400"
+                            style="color: #434244; text-decoration: none;">+{{signature.mobile}}</a>
+                    </p>
+
+                    <a href="https://uas.aero"><img src="https://uaspublicmedia.blob.core.windows.net/public-media/www.png"
+                            width="132" /></a>
+                    <table cellpadding="1" style="margin-top: 10px;">
                         <tbody>
                             <tr>
-                                <td style="padding-bottom:22px;">
-                                    <img src="{{signature.picture}}" width="120"
-                                        style="border-radius:100%;margin-top:-10px;" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-bottom:6px;">
-                                    <img src="https://uaspublicmedia.blob.core.windows.net/public-media/uas-signature-logo.jpg"
-                                        width="120" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td style="border-top:solid 2px #55148e;vertical-align:top;padding-top:5px;padding-bottom:0px;">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <table style="padding-bottom: 5px;">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h2 style="margin-bottom:0px;font-size: 1.2em;">
-                                                        {{signature.employeeName}}</h2>
-                                                    <h4 style="margin-top:6px;font-size: 1em;">
-                                                        {{signature.employeeDesignation}}</h4>
-                                                    <p style="font-size: 12px;">
-                                                        {{signature.addressLine1}},<br />{{signature.addressLine2}}</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-bottom:12px;">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td style="font-size: 12px;">
-                                                    T:
-                                                </td>
-                                                <td style="font-size: 12px;">
-                                                    <a href="tel:+97142996633"
-                                                        style="text-decoration:none;color:#434244;">
-                                                        +{{signature.phone}}
-                                                    </a>
-                                                </td>
-                                                <td style="font-size: 12px;">
-                                                    •
-                                                </td>
-                                                <td style="font-size: 12px;">
-                                                    Ext:
-                                                </td>
-                                                <td style="font-size: 12px;">
-                                                    {{signature.extLine}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-size: 12px;">
-                                                    F:
-                                                </td>
-                                                <td style="font-size: 12px;">
-                                                    <a href="tel:+97145103400"
-                                                        style="text-decoration:none;color:#434244;">
-                                                        +{{signature.faxLine}}
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-size: 12px;">
-                                                    M:
-                                                </td>
-                                                <td style="font-size: 12px;">
-                                                    <a href="tel:+97145103400"
-                                                        style="text-decoration:none;color:#434244;">
-                                                        +{{signature.mobile}}
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding-right:12px;vertical-align:bottom;padding-bottom:4px;width:140px;">
-                    <a href="https://uas.aero"
-                        style="display:block;text-decoration:none;color:#ffffff;background-color:#55148e;text-align:center;padding:5px;border-radius:50px;">uas.aero</a>
-                </td>
-                <td style="vertical-align:bottom;">
-                    <table>
-                        <tbody>
-                            <tr style="vertical-align:bottom;">
-                                <td style="vertical-align:bottom;padding-right:5px;">
-                                    <a href="http://www.facebook.com/UAS.aero"
-                                        style="display: block;text-decoration:none;color:#55148e;padding:0px;padding-bottom:0px;height:36px;width:36px;"><img
+                                <td><a href="http://www.facebook.com/UAS.aero"><img
                                             src="https://uaspublicmedia.blob.core.windows.net/public-media/facebook logo.png"
-                                            width="36" height="36" /></a>
-                                </td>
-                                <td style="vertical-align:bottom;padding-right:5px;">
-                                    <a href="http://twitter.com/uas_aero"
-                                        style="display: block;text-decoration:none;color:#55148e;padding:0px;padding-bottom:0px;height:36px;width:36px;"><img
+                                            width="24" height="24" /></a></td>
+                                <td><a href="http://twitter.com/uas_aero"><img
                                             src="https://uaspublicmedia.blob.core.windows.net/public-media/twitter_logo.png"
-                                            width="36" height="36" /></a>
-                                </td>
-                                <td style="vertical-align:bottom;padding-right:5px;">
-                                    <a href="https://www.instagram.com/uas_aero/"
-                                        style="display: block;text-decoration:none;color:#55148e;padding:0px;padding-bottom:0px;height:36px;width:36px;"><img
+                                            width="24" height="24" /></a></td>
+                                <td><a href="https://www.instagram.com/uas_aero/"><img
                                             src="https://uaspublicmedia.blob.core.windows.net/public-media/instagram logo.png"
-                                            width="36" height="36" /></a>
-                                </td>
-                                <td style="vertical-align:bottom;padding-right:5px;">
-                                    <a href="https://www.linkedin.com/company/uasaero/"
-                                        style="display: block;text-decoration:none;color:#55148e;padding:0px;padding-bottom:0px;height:36px;width:36px;"><img
+                                            width="24" height="24" /></a></td>
+                                <td><a href="https://www.linkedin.com/company/uasaero/"><img
                                             src="https://uaspublicmedia.blob.core.windows.net/public-media/linkedin logo.png"
-                                            width="36" height="36" /></a>
-                                </td>
-                                <td style="vertical-align:bottom;padding-right:5px;">
-                                    <a href="http://www.youtube.com/channel/UCsF7071q6wbpAXKPAiXNdGg"
-                                        style="display: block;text-decoration:none;color:#55148e;padding:0px;padding-bottom:0px;height:36px;width:36px;"><img
+                                            width="24" height="24" /></a></td>
+                                <td><a href="http://www.youtube.com/channel/UCsF7071q6wbpAXKPAiXNdGg"><img
                                             src="https://uaspublicmedia.blob.core.windows.net/public-media/youtube logo.png"
-                                            width="36" height="36" /></a>
-                                </td>
+                                            width="24" height="24" /></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -150,4 +65,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
